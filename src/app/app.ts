@@ -1,23 +1,10 @@
-import {Component, inject, signal, WritableSignal} from '@angular/core';
-import {RouterOutlet} from '@angular/router';
-import {ProfileCard} from './common-ui/profile-card/profile-card';
-import {ProfileService} from './data/services/profile';
-import {Profile} from './data/interfaces/profile.interface';
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ProfileCard],
+  imports: [RouterOutlet],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrl: './app.scss',
 })
-export class App {
-  private readonly profileService: ProfileService = inject(ProfileService);
-
-  protected profiles: WritableSignal<Profile[]> = signal([]);
-
-  constructor() {
-    this.profileService.getTestAccounts().subscribe(profiles => {
-      this.profiles.set(profiles);
-    })
-  }
-}
+export class App {}

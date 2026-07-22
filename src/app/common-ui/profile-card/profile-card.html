@@ -6,16 +6,15 @@
         [ngSrc]="avatarSrc"
         [alt]="avatarAlt"
         class="profile-card__avatar"
-        width="71"
-        height="71"
-      >
+        width="70"
+        height="70"
+      />
 
       <div class="profile-card__name">
         <strong class="h6">{{ profileValue.firstName }} {{ profileValue.lastName }}</strong>
         <span class="subtitle">{{ profileValue.username }}</span>
       </div>
     </div>
-
 
     <div class="profile-card__description">
       {{ profileValue.description }}
@@ -24,12 +23,13 @@
     <div class="profile-card__tags">
       @for (skill of profileValue.stack; track skill) {
         <div class="skill-tag">{{ skill }}</div>
+      } @empty {
+        <div>Навыков не найдено</div>
       }
     </div>
 
     <div class="profile-card__action-btns">
       <button class="btn">Подписаться</button>
     </div>
-
   </div>
 }

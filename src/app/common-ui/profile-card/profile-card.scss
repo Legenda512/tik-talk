@@ -7,16 +7,19 @@
 }
 
 .avatar-name {
-  display: flex;
+  display: grid;
   grid-template-columns: 70px 1fr;
-  grid-gap: 20px;
+  gap: 20px;
+  align-items: center;
 }
 
 .profile-card__avatar {
   width: 70px;
   height: 70px;
   border-radius: 50%;
-  overflow: hidden;
+  object-fit: cover;
+  object-position: center;
+  display: block;
 }
 
 .profile-card__name {
