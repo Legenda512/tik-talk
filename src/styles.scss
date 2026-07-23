@@ -6,6 +6,7 @@
   --light-color: #ffffff;
   --primary-color: #ae7aff;
   --gray-color: #5f6460;
+  --dark-hover-color: #161616;
 }
 
 *,
@@ -17,10 +18,13 @@
 }
 
 body {
+  height: 100dvh;
   font-family: 'JetBrains Mono', sans-serif;
   background: var(--dark-color);
   color: var(--light-color);
   background-image: url(/assets/imgs/background.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .skill-tag {
@@ -78,6 +82,13 @@ body {
 .subtitle {
   font-size: 14px;
   line-height: 20px;
+}
+
+.medium-text {
+  font-family: 'JetBrains Mono', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
 }
 
 .tt-control-label {

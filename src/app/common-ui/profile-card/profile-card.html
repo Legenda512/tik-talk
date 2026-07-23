@@ -3,8 +3,8 @@
   <div class="profile-card">
     <div class="avatar-name">
       <img
-        [ngSrc]="avatarSrc"
-        [alt]="avatarAlt"
+        [ngSrc]="profileValue.avatarUrl ?? 'assets/imgs/avatar-placeholder.png'"
+        [alt]="profileValue.lastName"
         class="profile-card__avatar"
         width="70"
         height="70"

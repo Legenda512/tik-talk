@@ -10,12 +10,4 @@ import { NgOptimizedImage } from '@angular/common';
 })
 export class ProfileCard {
   public profile: InputSignal<Profile> = input.required<Profile>();
-
-  protected get avatarSrc(): string {
-    return this.profile().avatarUrl ?? 'assets/imgs/avatar-placeholder.png';
-  }
-
-  protected get avatarAlt(): string {
-    return this.profile().lastName;
-  }
 }

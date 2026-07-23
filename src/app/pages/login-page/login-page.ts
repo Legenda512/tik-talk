@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal, WritableSignal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Auth } from '../../auth/auth';
 import { Router } from '@angular/router';
@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
 export class LoginPage {
   private readonly _authService: Auth = inject(Auth);
   private readonly _router: Router = inject(Router);
+
+  protected readonly isPasswordVisible: WritableSignal<boolean> = signal<boolean>(false);
 
   protected readonly form = new FormGroup({
     username: new FormControl(null, Validators.required),
