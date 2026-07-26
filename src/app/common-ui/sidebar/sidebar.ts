@@ -25,7 +25,7 @@ export class Sidebar implements OnInit {
     {
       label: 'Моя страница',
       icon: 'home',
-      link: '',
+      link: 'profile/me',
     },
     {
       label: 'Чаты',

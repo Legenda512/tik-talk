@@ -7,6 +7,7 @@
   --primary-color: #ae7aff;
   --gray-color: #5f6460;
   --dark-hover-color: #161616;
+  --light-transparent-color: #ffffffbf;
 }
 
 *,
@@ -73,6 +74,13 @@ body {
   line-height: 56px;
 }
 
+.h4 {
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 32px;
+  font-style: normal;
+}
+
 .h6 {
   font-size: 18px;
   line-height: 24px;
@@ -89,6 +97,13 @@ body {
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
+}
+
+.regular {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  font-style: normal;
 }
 
 .tt-control-label {
@@ -111,4 +126,40 @@ body {
   line-height: 21px;
   font-family: 'JetBrains Mono', sans-serif;
   color: var(--light-color);
+}
+
+.tt-form-label {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  .tt-form-label__text {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+    color: var(--light-transparent-color);
+  }
+
+  .tt-form-input {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 21px;
+    border: none;
+    border-bottom: 1px solid var(--light-color);
+    height: 33px;
+    background: none;
+    color: var(--light-color);
+    margin-bottom: 20px;
+
+    &:focus-visible {
+      outline: 1px solid var(--primary-color);
+    }
+  }
+
+  .tt-textarea{
+    height: 84px;
+    resize: none;
+  }
 }
