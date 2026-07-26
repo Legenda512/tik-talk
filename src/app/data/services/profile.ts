@@ -12,6 +12,8 @@ export class ProfileService {
 
   public readonly myProfile: WritableSignal<Profile | null> = signal<Profile | null>(null);
 
+  public readonly filtersProfiles: WritableSignal<Profile[]> = signal<Profile[]>([]);
+
   public getTestAccounts(): Observable<Profile[]> {
     return this._http.get<Profile[]>(`${this._baseApiUrl}account/test_accounts`);
   }
@@ -43,5 +45,17 @@ export class ProfileService {
     formData.append('image', file);
 
     return this._http.post(`${this._baseApiUrl}account/upload_image`, formData);
+  }
+
+  public filterProfiles(params: Record<string, any>): Observable<Pageable<Profile>> {
+    return this._http
+      .get<Pageable<Profile>>(`${this._baseApiUrl}account/accounts`, {
+        params,
+      })
+      .pipe(
+        tap((response: Pageable<Profile>) => {
+          this.filtersProfiles.set(response.items);
+        }),
+      );
   }
 }

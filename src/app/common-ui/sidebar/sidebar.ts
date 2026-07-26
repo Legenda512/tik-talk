@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, WritableSignal } from '@angular/core';
 import { SvgIcon } from '../svg-icon/svg-icon';
 import { SubscriberCard } from './subscriber-card/subscriber-card';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { ProfileService } from '../../data/services/profile';
 import { Observable, take } from 'rxjs';
 import { Profile } from '../../data/interfaces/profile.interface';
@@ -9,7 +9,7 @@ import { AsyncPipe, NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [SvgIcon, SubscriberCard, RouterLink, AsyncPipe, NgOptimizedImage],
+  imports: [SvgIcon, SubscriberCard, RouterLink, AsyncPipe, NgOptimizedImage, RouterLinkActive],
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.scss',
 })
