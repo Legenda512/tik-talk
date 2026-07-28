@@ -1,0 +1,19 @@
+@let commentValue = comment();
+<app-avatar-circle
+  class="size32"
+  [avatarUrl]="commentValue.author.avatarUrl"
+  [avatarAlt]="commentValue.author.username"
+></app-avatar-circle>
+
+<div class="comment-body">
+  <header class="comment-header">
+    <span class="medium-text comment-header__content">{{ commentValue.author.username }}</span>
+    <span class="medium-text comment-header__content">{{
+      commentValue.createdAt + 'Z' | date: 'HH:mm dd.MM.yyyy'
+    }}</span>
+  </header>
+
+  <div class="comment-text medium-text">
+    {{ commentValue.text }}
+  </div>
+</div>
