@@ -1,0 +1,38 @@
+@let profileValue = profile();
+
+@if (profileValue) {
+  <div class="profile-card">
+    <div class="avatar-name">
+      <div class="avatar-frame">
+        <img
+          [ngSrc]="profileValue.avatarUrl ?? '/assets/imgs/avatar-placeholder.png'"
+          [alt]="profileValue.lastName"
+          class="profile-card__avatar"
+          [fill]="true"
+          [priority]="priority()"
+        />
+      </div>
+
+      <div class="profile-card__name">
+        <strong class="h6">{{ profileValue.firstName }} {{ profileValue.lastName }}</strong>
+        <span class="subtitle">{{ profileValue.username }}</span>
+      </div>
+    </div>
+
+    <div class="profile-card__description">
+      {{ profileValue.description }}
+    </div>
+
+    <div class="profile-card__tags">
+      @for (skill of profileValue.stack; track skill) {
+        <div class="skill-tag">{{ skill }}</div>
+      } @empty {
+        <div>Навыков не найдено</div>
+      }
+    </div>
+
+    <div class="profile-card__action-btns">
+      <button class="btn">Подписаться</button>
+    </div>
+  </div>
+}

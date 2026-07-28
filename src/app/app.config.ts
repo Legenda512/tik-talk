@@ -1,4 +1,8 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
+import {
+  ApplicationConfig,
+  provideBrowserGlobalErrorListeners,
+  provideZoneChangeDetection,
+} from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
@@ -11,7 +15,7 @@ const customImageLoader = (config: ImageLoaderConfig): string => {
     return config.src;
   }
 
-  if (config.src.startsWith('assets/')) {
+  if (config.src.startsWith('/assets/')) {
     return config.src;
   }
 
@@ -21,6 +25,7 @@ const customImageLoader = (config: ImageLoaderConfig): string => {
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
+    provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideHttpClient(withInterceptors([authTokenInterceptor])),
     {

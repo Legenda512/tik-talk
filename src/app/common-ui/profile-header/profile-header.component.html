@@ -1,0 +1,16 @@
+@let profileValue = profile();
+
+<div class="avatar-frame">
+  <img
+    [ngSrc]="profileValue.avatarUrl ?? '/assets/imgs/avatar-placeholder.png'"
+    [alt]="profileValue.lastName"
+    class="profile-icon"
+    [fill]="true"
+    [priority]="true"
+  />
+</div>
+
+<div class="username-and-name">
+  <h1 class="h4 mb4">{{ profileValue.firstName }} {{ profileValue.lastName }}</h1>
+  <span class="regular">{{ profileValue.username }}</span>
+</div>

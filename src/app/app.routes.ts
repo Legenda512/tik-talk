@@ -1,22 +1,22 @@
 import { Routes } from '@angular/router';
-import { LoginPage } from './pages/login-page/login-page';
-import { SearchPage } from './pages/search-page/search-page';
-import { ProfilePage } from './pages/profile-page/profile-page';
-import { Layout } from './common-ui/layout/layout';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { SearchPageComponent } from './pages/search-page/search-page.component';
+import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
+import { LayoutComponent } from './common-ui/layout/layout.component';
 import { canActivateAuth } from './auth/access.guard';
-import { SettingsPage } from './pages/settings-page/settings-page';
+import { SettingsPageComponent } from './pages/settings-page/settings-page.component';
 
 export const routes: Routes = [
   {
     path: '',
-    component: Layout,
+    component: LayoutComponent,
     children: [
       { path: '', redirectTo: 'profile/me', pathMatch: 'full' },
-      { path: 'profile/:id', component: ProfilePage },
-      { path: 'settings', component: SettingsPage },
-      { path: 'search', component: SearchPage },
+      { path: 'profile/:id', component: ProfilePageComponent },
+      { path: 'settings', component: SettingsPageComponent },
+      { path: 'search', component: SearchPageComponent },
     ],
     canActivate: [canActivateAuth],
   },
-  { path: 'login', component: LoginPage },
+  { path: 'login', component: LoginPageComponent },
 ];

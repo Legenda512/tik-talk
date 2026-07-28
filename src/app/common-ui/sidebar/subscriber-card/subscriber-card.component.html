@@ -1,0 +1,10 @@
+@let profileValue = profile();
+<img
+  [ngSrc]="profileValue.avatarUrl ?? '/assets/imgs/avatar-placeholder.png'"
+  [alt]="profileValue.lastName"
+  class="subscriber-avatar"
+  width="32"
+  height="32"
+/>
+
+<strong class="subtitle"> {{ profileValue.firstName }} {{ profileValue.lastName }}</strong>

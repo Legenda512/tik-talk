@@ -1,0 +1,55 @@
+@let myProfileValue = myProfile();
+
+<a [routerLink]="['profile/me']">
+  <img
+    ngSrc="/assets/svg/logo-small.svg"
+    alt=""
+    class="ml16 mb20"
+    width="61"
+    height="74"
+    [priority]="true"
+  />
+</a>
+
+<nav class="mb20">
+  <ul class="main-menu-list">
+    @for (menuItem of menuItems; track menuItem.label) {
+      <li>
+        <a class="menu-item" [routerLink]="[menuItem.route]" routerLinkActive="active">
+          <svg [icon]="menuItem.icon"></svg>
+          <span>{{ menuItem.label }}</span>
+        </a>
+      </li>
+    }
+  </ul>
+</nav>
+
+<p class="medium-text mb20">Подписчики</p>
+
+@for (subscriber of subscribers$ | async; track subscriber.id) {
+  <app-subscriber-card [profile]="subscriber"></app-subscriber-card>
+}
+
+<div class="mt20 to-subscribers">
+  <a [routerLink]="['/subscribers']" class="to-subscribers-link medium-text">Все подписчики</a>
+  <svg icon="arrow" class="to-subscribers-icon"></svg>
+</div>
+
+<footer class="sidebar__footer">
+  @if (myProfileValue) {
+    <div class="my-profile-icon-frame">
+      <img
+        [ngSrc]="myProfileValue.avatarUrl ?? '/assets/imgs/avatar-placeholder.png'"
+        [alt]="myProfileValue.lastName"
+        class="my-profile-icon"
+        [fill]="true"
+      />
+    </div>
+
+    <div class="medium-text username-text">{{ myProfileValue.username }}</div>
+
+    <a [routerLink]="['settings']" class="settings-btn">
+      <svg icon="settings"></svg>
+    </a>
+  }
+</footer>
