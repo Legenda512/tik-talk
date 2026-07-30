@@ -1,0 +1,33 @@
+:host {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  grid-gap: 12px;
+
+  &.is-my-message {
+    grid-template-columns: 1fr 32px;
+    justify-content: end;
+
+    .message-container {
+      justify-items: end;
+      order: -1;
+    }
+  }
+}
+
+.message-container {
+  display: grid;
+  justify-items: start;
+}
+
+.message-header {
+  white-space: nowrap;
+}
+
+.message-text {
+  padding: 8px 16px;
+  background: var(--message-color);
+  font-weight: 500;
+  color: var(--light-color);
+  width: fit-content;
+  max-width: 60%;
+}

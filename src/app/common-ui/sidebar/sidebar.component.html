@@ -1,5 +1,3 @@
-@let myProfileValue = myProfile();
-
 <a [routerLink]="['profile/me']">
   <img
     ngSrc="/assets/svg/logo-small.svg"
@@ -36,17 +34,17 @@
 </div>
 
 <footer class="sidebar__footer">
-  @if (myProfileValue) {
+  @if (myProfile(); as myProfile) {
     <div class="my-profile-icon-frame">
       <img
-        [ngSrc]="myProfileValue.avatarUrl ?? '/assets/imgs/avatar-placeholder.png'"
-        [alt]="myProfileValue.lastName"
+        [ngSrc]="myProfile.avatarUrl ?? '/assets/imgs/avatar-placeholder.png'"
+        [alt]="myProfile.lastName"
         class="my-profile-icon"
         [fill]="true"
       />
     </div>
 
-    <div class="medium-text username-text">{{ myProfileValue.username }}</div>
+    <div class="medium-text username-text">{{ myProfile.username }}</div>
 
     <a [routerLink]="['settings']" class="settings-btn">
       <svg icon="settings"></svg>

@@ -1,44 +1,40 @@
 @let postValue = post();
 @let commentsValue = comments();
 
-@if (postValue) {
-  <app-avatar-circle
-    class="size32"
-    [avatarUrl]="postValue.author.avatarUrl"
-    [avatarAlt]="postValue.author.firstName"
-  ></app-avatar-circle>
+<app-avatar-circle
+  class="size32"
+  [avatarUrl]="postValue.author.avatarUrl"
+  [avatarAlt]="postValue.author.firstName"
+></app-avatar-circle>
 
-  <main class="post-body">
-    <div class="post-header">
-      <strong class="post__author"
-        >{{ postValue.author.firstName }} {{ postValue.author.lastName }}
-        <span class="post-created-at">
-          {{ postValue.createdAt + 'Z' | date: 'HH:mm dd.MM.yy' }}</span
-        >
-      </strong>
-    </div>
+<main class="post-body">
+  <div class="post-header">
+    <strong class="post__author"
+      >{{ postValue.author.firstName }} {{ postValue.author.lastName }}
+      <span class="post-created-at"> {{ postValue.createdAt + 'Z' | date: 'HH:mm dd.MM.yy' }}</span>
+    </strong>
+  </div>
 
-    <p class="medium-text">{{ postValue.content }}</p>
+  <p class="medium-text">{{ postValue.content }}</p>
 
-    <div class="post-counters">
-      <span class="comment-amount">
-        <svg icon="comments" class="svg16"></svg>
-        <span class="comments-length">
-          {{ commentsValue.length }}
-        </span>
+  <div class="post-counters">
+    <span class="comment-amount">
+      <svg icon="comments" class="svg16"></svg>
+      <span class="comments-length">
+        {{ commentsValue.length }}
       </span>
-    </div>
+    </span>
+  </div>
 
-    <div class="post__comments-wrapper">
-      @for (comment of commentsValue; track comment.id) {
-        <app-comment [comment]="comment"></app-comment>
-      }
-    </div>
+  <div class="post__comments-wrapper">
+    @for (comment of commentsValue; track comment.id) {
+      <app-comment [comment]="comment"></app-comment>
+    }
+  </div>
 
-    <app-post-input
-      (created)="onCreated()"
-      [isCommentInput]="true"
-      [postId]="postValue.id"
-    ></app-post-input>
-  </main>
-}
+  <app-post-input
+    (created)="onCreated()"
+    [isCommentInput]="true"
+    [postId]="postValue.id"
+  ></app-post-input>
+</main>

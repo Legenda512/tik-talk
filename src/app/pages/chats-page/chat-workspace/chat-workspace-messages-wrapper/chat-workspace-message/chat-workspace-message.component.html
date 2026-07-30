@@ -1,0 +1,17 @@
+@let messageValue = message();
+
+@if (messageValue.user) {
+  <app-avatar-circle
+    class="size32"
+    [avatarUrl]="messageValue.user.avatarUrl"
+    [avatarAlt]="messageValue.user.lastName"
+  ></app-avatar-circle>
+
+  <div class="message-container">
+    <strong class="medium-text mb8 message-header"
+      >{{ messageValue.user.firstName }} {{ messageValue.user.lastName }}
+      {{ messageValue.createdAt | date: 'HH:mm' }}
+    </strong>
+    <div class="message-text medium-text">{{ messageValue.text }}</div>
+  </div>
+}

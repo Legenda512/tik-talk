@@ -53,14 +53,17 @@ const refreshAndProceed = (
     );
   }
 
-  if (req.url.includes('refresh')) {
-    return next(addToken(req, authService.getToken!));
+  const token: string | null = authService.getToken;
+
+  if (req.url.includes('refresh') && token) {
+    return next(addToken(req, token));
   }
 
   return isRefreshing$.pipe(
     filter((isRefreshing: boolean): boolean => !isRefreshing),
     switchMap((): Observable<HttpEvent<unknown>> => {
-      return next(addToken(req, authService.getToken!));
+      const currentToken: string | null = authService.getToken;
+      return next(addToken(req, currentToken ?? ''));
     }),
   );
 };

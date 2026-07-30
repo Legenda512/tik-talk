@@ -1,0 +1,17 @@
+:host {
+  border-right: var(--light-border);
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100%;
+  overflow: hidden;
+}
+
+.chats-filter-input__wrapper {
+  padding: 16px 20px;
+  border-bottom: var(--light-border);
+}
+
+.chats-list__wrapper {
+  overflow-y: auto;
+  min-height: 0;
+}

@@ -1,14 +1,14 @@
-@let profileValue = profile();
-
-@if (profileValue) {
+@if (profile(); as profile) {
   <header class="profile-page__header">
-    <app-profile-header [profile]="profileValue"></app-profile-header>
+    <app-profile-header [profile]="profile"></app-profile-header>
 
     @if (isVisibleSettings()) {
       <a class="btn to-settings-btn" [routerLink]="['/settings']">
         Редактировать
         <svg icon="settings" class="to-settings-icon"></svg>
       </a>
+    } @else {
+      <button class="btn to-settings-btn" (click)="sendMessage(profile.id)">Написать</button>
     }
   </header>
 
@@ -38,13 +38,13 @@
 
       <h3 class="h6 mb16">Навыки</h3>
       <div class="stack-wrapper mb32">
-        @for (skill of profileValue.stack; track skill) {
+        @for (skill of profile.stack; track skill) {
           <div class="skill-tag">{{ skill }}</div>
         }
       </div>
 
       <h3 class="h6 mb16">О себе</h3>
-      <p class="medium-text">{{ profileValue.description }}</p>
+      <p class="medium-text">{{ profile.description }}</p>
     </div>
   </main>
 }

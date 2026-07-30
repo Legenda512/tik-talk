@@ -1,0 +1,11 @@
+@let profileValue = profile();
+
+<div class="companion-wrapper">
+  <app-avatar-circle
+    class="size32"
+    [avatarUrl]="profileValue.avatarUrl"
+    [avatarAlt]="profileValue.lastName"
+  ></app-avatar-circle>
+
+  <div class="subtitle">{{ profileValue.firstName }} {{ profileValue.lastName }}</div>
+</div>
