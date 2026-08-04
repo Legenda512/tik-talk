@@ -1,0 +1,40 @@
+@let postValue = post();
+@let commentsValue = comments();
+
+<app-avatar-circle
+  class="size32"
+  [avatarUrl]="postValue.author.avatarUrl"
+  [avatarAlt]="postValue.author.firstName"
+></app-avatar-circle>
+
+<main class="post-body">
+  <div class="post-header">
+    <strong class="post__author"
+      >{{ postValue.author.firstName }} {{ postValue.author.lastName }}
+      <span class="post-created-at"> {{ postValue.createdAt + 'Z' | date: 'HH:mm dd.MM.yy' }}</span>
+    </strong>
+  </div>
+
+  <p class="medium-text">{{ postValue.content }}</p>
+
+  <div class="post-counters">
+    <span class="comment-amount">
+      <app-svg-icon icon="comments" class="svg16"></app-svg-icon>
+      <span class="comments-length">
+        {{ commentsValue.length }}
+      </span>
+    </span>
+  </div>
+
+  <div class="post__comments-wrapper">
+    @for (comment of commentsValue; track comment.id) {
+      <app-comment [comment]="comment"></app-comment>
+    }
+  </div>
+
+  <app-post-input
+    (created)="onCreated()"
+    [isCommentInput]="true"
+    [postId]="postValue.id"
+  ></app-post-input>
+</main>
