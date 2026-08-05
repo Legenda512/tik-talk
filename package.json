@@ -20,6 +20,7 @@
     "@angular/platform-browser": "^22.0.0",
     "@angular/router": "^22.0.0",
     "@ngrx/effects": "^21.1.1",
+    "@ngrx/signals": "^21.1.1",
     "@ngrx/store": "^21.1.1",
     "ngx-cookie-service": "^22.0.0",
     "rxjs": "~7.8.0",
