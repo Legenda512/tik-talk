@@ -4,6 +4,7 @@ import { ProfilePageComponent } from './lib/feature-profile-page';
 import { SettingsPageComponent } from './lib/feature-profile-settings';
 import { AvatarUploadComponent, ProfileCardComponent, ProfileHeaderComponent } from './lib/ui';
 
+export * from './lib/data/store';
 export type { SearchForm, SettingsForm };
 export {
   ProfileService,

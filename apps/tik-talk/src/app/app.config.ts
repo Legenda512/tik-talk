@@ -9,6 +9,8 @@ import { routes } from './app.routes';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { IMAGE_LOADER, ImageLoaderConfig } from '@angular/common';
 import { authTokenInterceptor } from '@tt/auth';
+import { provideStore } from '@ngrx/store';
+import { provideEffects } from '@ngrx/effects';
 
 const customImageLoader = (config: ImageLoaderConfig): string => {
   if (config.src.startsWith('http://') || config.src.startsWith('https://')) {
@@ -32,5 +34,7 @@ export const appConfig: ApplicationConfig = {
       provide: IMAGE_LOADER,
       useValue: customImageLoader,
     },
+    provideStore(),
+    provideEffects(),
   ],
 };

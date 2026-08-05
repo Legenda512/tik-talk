@@ -1,8 +1,9 @@
-import { Component, inject, WritableSignal } from '@angular/core';
+import { Component, inject, Signal } from '@angular/core';
 import { ProfileFilters } from '../profile-filters/profile-filters';
 import { ProfileCardComponent } from '../../ui';
-import { ProfileService } from '../../data';
+import { selectFilteredProfiles } from '../../data';
 import { Profile } from '@tt/interfaces/profile';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-search-page',
@@ -11,5 +12,6 @@ import { Profile } from '@tt/interfaces/profile';
   styleUrl: './search-page.component.scss',
 })
 export class SearchPageComponent {
-  protected profiles: WritableSignal<Profile[]> = inject(ProfileService).filtersProfiles;
+  private readonly _store = inject(Store);
+  protected profiles: Signal<Profile[]> = this._store.selectSignal(selectFilteredProfiles);
 }

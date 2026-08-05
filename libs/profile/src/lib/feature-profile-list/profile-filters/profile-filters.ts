@@ -1,8 +1,9 @@
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { debounceTime, startWith, switchMap } from 'rxjs';
+import { debounceTime, startWith } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ProfileService, SearchForm } from '../../data';
+import { profileActions, SearchForm, selectProfileFilters } from '../../data';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-profile-filters',
@@ -11,8 +12,8 @@ import { ProfileService, SearchForm } from '../../data';
   styleUrl: './profile-filters.scss',
 })
 export class ProfileFilters implements OnInit {
-  private readonly _profileService: ProfileService = inject(ProfileService);
   private readonly _destroyRef: DestroyRef = inject(DestroyRef);
+  private readonly _store = inject(Store);
 
   protected readonly searchForm: FormGroup<SearchForm> = new FormGroup<SearchForm>({
     firstName: new FormControl('', { nonNullable: true }),
@@ -21,15 +22,17 @@ export class ProfileFilters implements OnInit {
   });
 
   ngOnInit(): void {
+    const activeFilters = this._store.selectSignal(selectProfileFilters);
+    this.searchForm.patchValue(activeFilters(), { emitEvent: false });
+
     this.searchForm.valueChanges
       .pipe(
         startWith(this.searchForm.getRawValue()),
         debounceTime(300),
-        switchMap((formValue) => {
-          return this._profileService.filterProfiles(formValue);
-        }),
         takeUntilDestroyed(this._destroyRef),
       )
-      .subscribe();
+      .subscribe((formValue) => {
+        this._store.dispatch(profileActions.filterEvents({ filters: formValue }));
+      });
   }
 }
