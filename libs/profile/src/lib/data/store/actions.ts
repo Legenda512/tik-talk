@@ -6,5 +6,6 @@ export const profileActions = createActionGroup({
   events: {
     'filter events': props<{ filters: Record<string, string | number | boolean | null> }>(),
     'profiles loaded': props<{ profiles: Profile[] }>(),
+    'set page': props<{ page?: number }>(),
   },
 });

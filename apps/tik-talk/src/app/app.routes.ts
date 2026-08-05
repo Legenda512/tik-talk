@@ -1,21 +1,19 @@
 import { Route, Routes } from '@angular/router';
 import { canActivateAuth, LoginPageComponent } from '@tt/auth';
 import {
-  // ProfileEffects,
-  // profileFeature,
+  ProfileEffects,
+  profileFeature,
   ProfilePageComponent,
-  profileStore,
+  // profileStore,
   SearchPageComponent,
   SettingsPageComponent,
 } from '@tt/profile';
 import { chatsRoutes } from '@tt/chats';
 import { LayoutComponent } from '@tt/layout';
 
-/*
 // store NgRX
 import { provideEffects } from '@ngrx/effects';
 import { provideState } from '@ngrx/store';
-*/
 
 export const routes: Routes = [
   {
@@ -29,14 +27,14 @@ export const routes: Routes = [
         path: 'search',
         component: SearchPageComponent,
         providers: [
+          /*
           //store NgRX Signals
           profileStore,
+          */
 
-          /*
           // store NgRX
           provideState(profileFeature),
-          provideEffects(ProfileEffects)
-          */
+          provideEffects(ProfileEffects),
         ],
       },
       { path: 'chats', loadChildren: (): Route[] => chatsRoutes },

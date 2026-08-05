@@ -1,8 +1,39 @@
 <app-profile-filters></app-profile-filters>
 
-<div class="profile-card__wrapper">
-  @for (profile of profiles(); track profile.id; let i = $index) {
+<div
+  class="profile-card__wrapper"
+  infiniteScroll
+  [infiniteScrollDistance]="0.5"
+  [infiniteScrollThrottle]="50"
+  [scrollWindow]="false"
+  (scrolled)="onScroll()"
+>
+  @for (profile of profiles(); track profile.id; let i = $index; let last = $last) {
     <app-profile-card [profile]="profile" [priority]="i === 0"></app-profile-card>
+
+    <!-- scroll version 2
+    <div class="profile-card__wrapper" waIntersectionObserver waIntersectionThreshold="0.5">
+    <app-profile-card
+      (waIntersectionObservee)="last ? onIntersection($event) : null"
+      [profile]="profile"
+      [priority]="i === 0"
+    ></app-profile-card>-->
+
+    <!-- scroll version 1
+    <app-profile-card
+      [profile]="profile"
+      [priority]="i === 0"
+    ></app-profile-card>
+
+     @if (last) {
+      @defer (on viewport) {
+        <lib-infinite-scroll-trigger
+        (loaded)="timeToFetch()"
+        ></lib-infinite-scroll-trigger>
+      } @placeholder {
+        <div></div>
+      }
+    }-->
   } @empty {
     <span>Профилей не найдено</span>
   }

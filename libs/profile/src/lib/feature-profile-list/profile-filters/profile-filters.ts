@@ -3,12 +3,12 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 import { debounceTime, startWith } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
-  //profileActions,
-  profileStore,
+  profileActions,
+  // profileStore,
   SearchForm,
-  //selectProfileFilters
+  selectProfileFilters,
 } from '../../data';
-//import { Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-profile-filters',
@@ -18,13 +18,13 @@ import {
 })
 export class ProfileFilters implements OnInit {
   private readonly _destroyRef: DestroyRef = inject(DestroyRef);
-  /*
   //NgRX store
   private readonly _store = inject(Store);
-  */
 
+  /*
   // NgRX signal store
   private readonly _store = inject(profileStore);
+  */
 
   protected readonly searchForm: FormGroup<SearchForm> = new FormGroup<SearchForm>({
     firstName: new FormControl('', { nonNullable: true }),
@@ -33,11 +33,9 @@ export class ProfileFilters implements OnInit {
   });
 
   ngOnInit(): void {
-    /*
     // NgRX store
     const activeFilters = this._store.selectSignal(selectProfileFilters);
     this.searchForm.patchValue(activeFilters(), { emitEvent: false });
-    */
 
     this.searchForm.valueChanges
       .pipe(
@@ -46,13 +44,11 @@ export class ProfileFilters implements OnInit {
         takeUntilDestroyed(this._destroyRef),
       )
       .subscribe((formValue) => {
-        /*
-        // NgRX signal store
+        // NgRX store
         this._store.dispatch(profileActions.filterEvents({ filters: formValue }));
-        */
 
-        // NgRx signals
-        this._store.filterProfiles(formValue);
+        /*// NgRx signals
+        this._store.filterProfiles(formValue);*/
       });
   }
 }

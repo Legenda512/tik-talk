@@ -1,5 +1,5 @@
 import { createSelector } from '@ngrx/store';
-import { profileFeature } from './reducer';
+import { profileFeature, ProfileState } from './reducer';
 import { Profile } from '@tt/interfaces/profile';
 
 export const selectFilteredProfiles = createSelector(
@@ -12,4 +12,14 @@ export const selectProfileFilters = createSelector(
   (
     profileFilters: Record<string, string | number | boolean | null>,
   ): Record<string, string | number | boolean | null> => profileFilters,
+);
+
+export const selectProfilePageable = createSelector(
+  profileFeature.selectProfileFeatureState,
+  (state: ProfileState) => {
+    return {
+      page: state.page,
+      size: state.size,
+    };
+  },
 );
