@@ -1,9 +1,10 @@
-import { Component, inject, signal, WritableSignal } from '@angular/core';
+import { Component, inject, PLATFORM_ID, signal, WritableSignal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgOptimizedImage } from '@angular/common';
+import { isPlatformBrowser, NgOptimizedImage } from '@angular/common';
 import { LoginForm, AuthService } from '../../data';
 import { SvgIconComponent } from '@tt/common-ui';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login-page',
@@ -14,6 +15,9 @@ import { SvgIconComponent } from '@tt/common-ui';
 export class LoginPageComponent {
   private readonly _authService: AuthService = inject(AuthService);
   private readonly _router: Router = inject(Router);
+  private readonly _title: Title = inject(Title);
+  private readonly _meta: Meta = inject(Meta);
+  private readonly _platformId = inject(PLATFORM_ID);
 
   protected readonly isPasswordVisible: WritableSignal<boolean> = signal<boolean>(false);
 
@@ -21,6 +25,16 @@ export class LoginPageComponent {
     username: new FormControl('', { nonNullable: true, validators: Validators.required }),
     password: new FormControl('', { nonNullable: true, validators: Validators.required }),
   });
+
+  // пример работы с ssr
+  constructor() {
+    this._title.setTitle('Login');
+    this._meta.addTag({ property: 'desc', content: 'example' });
+
+    if (isPlatformBrowser(this._platformId)) {
+      console.log(document.body.offsetWidth);
+    }
+  }
 
   protected onSubmit(): void {
     if (this.form.valid) {

@@ -11,6 +11,7 @@ import { IMAGE_LOADER, ImageLoaderConfig } from '@angular/common';
 import { authTokenInterceptor } from '@tt/auth';
 import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
+import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 
 const customImageLoader = (config: ImageLoaderConfig): string => {
   if (config.src.startsWith('http://') || config.src.startsWith('https://')) {
@@ -26,6 +27,7 @@ const customImageLoader = (config: ImageLoaderConfig): string => {
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideClientHydration(withEventReplay()),
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),

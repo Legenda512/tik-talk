@@ -2,6 +2,8 @@
   "name": "tik-talk",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
+  "sourceRoot": "apps/tik-talk/src",
+  "prefix": "app",
   "generators": {
     "@schematics/angular:component": {
       "type": "component",
@@ -37,11 +39,11 @@
       "skipTests": true
     }
   },
-  "sourceRoot": "apps/tik-talk/src",
-  "prefix": "app",
   "targets": {
     "build": {
       "executor": "@angular/build:application",
+      "defaultConfiguration": "production",
+      "outputs": ["{options.outputPath}"],
       "options": {
         "browser": "apps/tik-talk/src/main.ts",
         "polyfills": ["zone.js"],
@@ -54,7 +56,12 @@
           }
         ],
         "styles": ["apps/tik-talk/src/styles.scss"],
-        "outputPath": "dist/tik-talk"
+        "outputPath": "dist/tik-talk",
+        "server": "apps/tik-talk/src/main.server.ts",
+        "ssr": {
+          "entry": "apps/tik-talk/src/server.ts"
+        },
+        "outputMode": "server"
       },
       "configurations": {
         "production": {
@@ -77,12 +84,11 @@
           "extractLicenses": false,
           "sourceMap": true
         }
-      },
-      "defaultConfiguration": "production",
-      "outputs": ["{options.outputPath}"]
+      }
     },
     "serve": {
       "executor": "@angular/build:dev-server",
+      "defaultConfiguration": "development",
       "configurations": {
         "production": {
           "buildTarget": "tik-talk:build:production"
@@ -90,8 +96,7 @@
         "development": {
           "buildTarget": "tik-talk:build:development"
         }
-      },
-      "defaultConfiguration": "development"
+      }
     },
     "test": {
       "executor": "@angular/build:unit-test"
