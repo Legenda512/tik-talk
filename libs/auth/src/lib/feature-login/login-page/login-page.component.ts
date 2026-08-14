@@ -30,10 +30,6 @@ export class LoginPageComponent {
   constructor() {
     this._title.setTitle('Login');
     this._meta.addTag({ property: 'desc', content: 'example' });
-
-    if (isPlatformBrowser(this._platformId)) {
-      console.log(document.body.offsetWidth);
-    }
   }
 
   protected onSubmit(): void {

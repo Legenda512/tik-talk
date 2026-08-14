@@ -14,6 +14,7 @@ import { LayoutComponent } from '@tt/layout';
 // store NgRX
 import { provideEffects } from '@ngrx/effects';
 import { provideState } from '@ngrx/store';
+import { FormExperimentalComponent } from '@tt/experimental';
 
 export const routes: Routes = [
   {
@@ -42,4 +43,5 @@ export const routes: Routes = [
     canActivate: [canActivateAuth],
   },
   { path: 'login', component: LoginPageComponent },
+  { path: 'experimental', component: FormExperimentalComponent },
 ];
