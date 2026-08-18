@@ -3,12 +3,12 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router } from '@angular/router';
 import { isPlatformBrowser, NgOptimizedImage } from '@angular/common';
 import { LoginForm, AuthService } from '../../data';
-import { SvgIconComponent } from '@tt/common-ui';
+import { SvgIconComponent, TtInputComponent } from '@tt/common-ui';
 import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login-page',
-  imports: [ReactiveFormsModule, NgOptimizedImage, SvgIconComponent],
+  imports: [ReactiveFormsModule, NgOptimizedImage, SvgIconComponent, TtInputComponent],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.scss',
 })
@@ -22,7 +22,7 @@ export class LoginPageComponent {
   protected readonly isPasswordVisible: WritableSignal<boolean> = signal<boolean>(false);
 
   protected readonly form: FormGroup<LoginForm> = new FormGroup<LoginForm>({
-    username: new FormControl('', { nonNullable: true, validators: Validators.required }),
+    username: new FormControl('USERNAME', { nonNullable: true, validators: Validators.required }),
     password: new FormControl('', { nonNullable: true, validators: Validators.required }),
   });
 
