@@ -22,8 +22,11 @@ export class LoginPageComponent {
   protected readonly isPasswordVisible: WritableSignal<boolean> = signal<boolean>(false);
 
   protected readonly form: FormGroup<LoginForm> = new FormGroup<LoginForm>({
-    username: new FormControl('USERNAME', { nonNullable: true, validators: Validators.required }),
-    password: new FormControl('', { nonNullable: true, validators: Validators.required }),
+    username: new FormControl('lastovkaalexei', {
+      nonNullable: true,
+      validators: Validators.required,
+    }),
+    password: new FormControl('n1zAPuU9hq', { nonNullable: true, validators: Validators.required }),
   });
 
   // пример работы с ssr

@@ -5,5 +5,5 @@ export interface SettingsForm {
   lastName: FormControl<string | null>;
   username: FormControl<string | null>;
   description: FormControl<string | null>;
-  stack: FormControl<string | null>;
+  stack: FormControl<string[] | null>;
 }

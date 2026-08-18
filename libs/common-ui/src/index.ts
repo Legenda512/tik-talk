@@ -1,6 +1,7 @@
 import {
   AvatarCircleComponent,
   InfiniteScrollTriggerComponent,
+  StackInputComponent,
   SvgIconComponent,
   TtInputComponent,
 } from './lib/components';
@@ -12,4 +13,5 @@ export {
   DndDirective,
   InfiniteScrollTriggerComponent,
   TtInputComponent,
+  StackInputComponent,
 };

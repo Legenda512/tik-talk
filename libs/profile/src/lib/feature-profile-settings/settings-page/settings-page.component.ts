@@ -5,10 +5,16 @@ import { Router } from '@angular/router';
 import { AvatarUploadComponent, ProfileHeaderComponent } from '../../ui';
 import { ProfileService, SettingsForm } from '../../data';
 import { Profile } from '@tt/interfaces/profile';
+import { StackInputComponent } from '@tt/common-ui';
 
 @Component({
   selector: 'app-settings-page',
-  imports: [ProfileHeaderComponent, ReactiveFormsModule, AvatarUploadComponent],
+  imports: [
+    ProfileHeaderComponent,
+    ReactiveFormsModule,
+    AvatarUploadComponent,
+    StackInputComponent,
+  ],
   templateUrl: './settings-page.component.html',
   styleUrl: './settings-page.component.scss',
 })
@@ -23,7 +29,7 @@ export class SettingsPageComponent {
     lastName: new FormControl('', Validators.required),
     username: new FormControl({ value: '', disabled: true }, Validators.required),
     description: new FormControl(''),
-    stack: new FormControl(''),
+    stack: new FormControl([]),
   });
 
   protected readonly profile: Profile | null = this._profileService.myProfile();
@@ -34,34 +40,9 @@ export class SettingsPageComponent {
       if (profile) {
         this.form.patchValue({
           ...profile,
-          stack: this.mergeStack(profile.stack),
         });
       }
     });
-  }
-
-  protected splitStack(stack: string | null | string[]): string[] {
-    if (!stack) {
-      return [];
-    }
-
-    if (Array.isArray(stack)) {
-      return stack;
-    }
-
-    return stack.split(',');
-  }
-
-  protected mergeStack(stack: string | null | string[]): string {
-    if (!stack) {
-      return '';
-    }
-
-    if (Array.isArray(stack)) {
-      return stack.join(',');
-    }
-
-    return stack;
   }
 
   protected onSave(): void {
@@ -80,7 +61,7 @@ export class SettingsPageComponent {
       firstName: formValue.firstName ?? '',
       lastName: formValue.lastName ?? '',
       description: formValue.description ?? '',
-      stack: this.splitStack(formValue.stack),
+      stack: formValue.stack ?? [],
     };
 
     const avatarRequest$: Observable<object> | Observable<null> = avatar
