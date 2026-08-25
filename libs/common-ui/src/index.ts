@@ -1,4 +1,5 @@
 import {
+  AddressInputComponent,
   AvatarCircleComponent,
   InfiniteScrollTriggerComponent,
   StackInputComponent,
@@ -14,4 +15,5 @@ export {
   InfiniteScrollTriggerComponent,
   TtInputComponent,
   StackInputComponent,
+  AddressInputComponent,
 };

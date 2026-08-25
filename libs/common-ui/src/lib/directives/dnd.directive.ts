@@ -1,7 +1,7 @@
 import { Directive, output, OutputEmitterRef, signal, WritableSignal } from '@angular/core';
 
 @Directive({
-  selector: '[appDnd]',
+  selector: '[libDnd]',
   host: {
     '[class.file-over]': 'fileOver()',
     '(dragover)': 'onDragOver($event)',

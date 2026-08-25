@@ -3,7 +3,7 @@ import { NgOptimizedImage } from '@angular/common';
 import { Profile } from '@tt/interfaces/profile';
 
 @Component({
-  selector: 'app-subscriber-card',
+  selector: 'lib-subscriber-card',
   imports: [NgOptimizedImage],
   templateUrl: './subscriber-card.component.html',
   styleUrl: './subscriber-card.component.scss',

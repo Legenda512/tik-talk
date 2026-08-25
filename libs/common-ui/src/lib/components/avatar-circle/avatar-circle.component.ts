@@ -2,7 +2,7 @@ import { Component, input, InputSignal } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 
 @Component({
-  selector: 'app-avatar-circle',
+  selector: 'lib-avatar-circle',
   imports: [NgOptimizedImage],
   templateUrl: './avatar-circle.component.html',
   styleUrl: './avatar-circle.component.scss',

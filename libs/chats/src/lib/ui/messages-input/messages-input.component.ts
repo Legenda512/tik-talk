@@ -13,7 +13,7 @@ import { ProfileService } from '@tt/profile';
 import { Profile } from '@tt/interfaces/profile';
 
 @Component({
-  selector: 'app-messages-input',
+  selector: 'lib-messages-input',
   imports: [AvatarCircleComponent, FormsModule, SvgIconComponent],
   templateUrl: './messages-input.component.html',
   styleUrl: './messages-input.component.scss',

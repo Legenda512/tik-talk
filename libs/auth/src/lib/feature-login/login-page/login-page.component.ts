@@ -1,13 +1,13 @@
-import { Component, inject, PLATFORM_ID, signal, WritableSignal } from '@angular/core';
+import { Component, inject, signal, WritableSignal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { isPlatformBrowser, NgOptimizedImage } from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 import { LoginForm, AuthService } from '../../data';
 import { SvgIconComponent, TtInputComponent } from '@tt/common-ui';
 import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-login-page',
+  selector: 'lib-login-page',
   imports: [ReactiveFormsModule, NgOptimizedImage, SvgIconComponent, TtInputComponent],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.scss',
@@ -17,7 +17,6 @@ export class LoginPageComponent {
   private readonly _router: Router = inject(Router);
   private readonly _title: Title = inject(Title);
   private readonly _meta: Meta = inject(Meta);
-  private readonly _platformId = inject(PLATFORM_ID);
 
   protected readonly isPasswordVisible: WritableSignal<boolean> = signal<boolean>(false);
 

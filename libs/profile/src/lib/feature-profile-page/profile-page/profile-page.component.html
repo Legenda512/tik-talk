@@ -1,11 +1,11 @@
 @if (profile(); as profile) {
   <header class="profile-page__header">
-    <app-profile-header [profile]="profile"></app-profile-header>
+    <lib-profile-header [profile]="profile"></lib-profile-header>
 
     @if (isVisibleSettings()) {
       <a class="btn to-settings-btn" [routerLink]="['/settings']">
         Редактировать
-        <app-svg-icon icon="settings" class="to-settings-icon"></app-svg-icon>
+        <lib-svg-icon icon="settings" class="to-settings-icon"></lib-svg-icon>
       </a>
     } @else {
       <button class="btn to-settings-btn" (click)="sendMessage(profile.id)">Написать</button>
@@ -13,7 +13,7 @@
   </header>
 
   <main class="profile-page__body">
-    <app-post-feed></app-post-feed>
+    <lib-post-feed></lib-post-feed>
 
     <div>
       <h3 class="h6 mb16">Подписчики</h3>
@@ -32,7 +32,7 @@
         }
 
         <a class="to-subscribers-search" [routerLink]="['/search']">
-          <app-svg-icon icon="add" class="to-add-icon"></app-svg-icon>
+          <lib-svg-icon icon="add" class="to-add-icon"></lib-svg-icon>
         </a>
       </div>
 

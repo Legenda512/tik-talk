@@ -1,9 +1,9 @@
 @let profileValue = profile();
 
-<app-avatar-circle
+<lib-avatar-circle
   [avatarUrl]="profileValue.avatarUrl"
   [avatarAlt]="profileValue.lastName"
-></app-avatar-circle>
+></lib-avatar-circle>
 
 <div class="username-and-name">
   <h1 class="h4 mb4">{{ profileValue.firstName }} {{ profileValue.lastName }}</h1>

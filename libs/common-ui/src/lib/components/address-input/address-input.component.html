@@ -1,0 +1,16 @@
+<lib-tt-input
+  type="text"
+  placeholder="Укажите город"
+  [formControl]="innerSearchControl"
+></lib-tt-input>
+@if (suggestions(); as suggestions) {
+  @if (isDropdownOpened()) {
+    <div class="suggestions-dropdown">
+      @for (suggest of suggestions; track suggest) {
+        <button type="button" class="suggest-button" (click)="onSuggestionPick(suggest.data.city)">
+          {{ suggest.data.city }}
+        </button>
+      }
+    </div>
+  }
+}

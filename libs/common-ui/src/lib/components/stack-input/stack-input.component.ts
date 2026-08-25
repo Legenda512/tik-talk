@@ -24,8 +24,12 @@ export class StackInputComponent implements ControlValueAccessor {
   public innerInput: string | null = null;
   public isDisabled: WritableSignal<boolean> = signal<boolean>(false);
 
-  public onChange: (value: string[]) => void = () => {};
-  public onTouched: () => void = () => {};
+  public onChange: (value: string[]) => void = (): void => {
+    // noop
+  };
+  public onTouched: () => void = (): void => {
+    // noop
+  };
 
   public writeValue(stack: unknown): void {
     if (Array.isArray(stack)) {
@@ -57,13 +61,13 @@ export class StackInputComponent implements ControlValueAccessor {
     event.preventDefault();
     event.stopPropagation();
 
-    const tag = this.innerInput?.trim();
+    const tag: string | undefined = this.innerInput?.trim();
 
     if (!tag) {
       return;
     }
 
-    const nextValue = [...this.value(), tag];
+    const nextValue: string[] = [...this.value(), tag];
     this.value.set(nextValue);
     this.onChange(nextValue);
     this.onTouched();
@@ -71,7 +75,7 @@ export class StackInputComponent implements ControlValueAccessor {
   }
 
   protected onTagDelete(index: number): void {
-    const nextValue = this.value().filter((_, i) => i !== index);
+    const nextValue: string[] = this.value().filter((_: string, i: number): boolean => i !== index);
     this.value.set(nextValue);
     this.onChange(nextValue);
     this.onTouched();

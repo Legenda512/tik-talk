@@ -1,9 +1,9 @@
 @if (myProfile(); as myProfile) {
-  <app-avatar-circle
+  <lib-avatar-circle
     class="size32"
     [avatarUrl]="myProfile.avatarUrl"
     [avatarAlt]="myProfile.lastName"
-  ></app-avatar-circle>
+  ></lib-avatar-circle>
 }
 
 <textarea
@@ -14,5 +14,5 @@
 ></textarea>
 
 <button class="btn-icon" (click)="onCreatePost()">
-  <app-svg-icon icon="send-message" class="svg16"></app-svg-icon>
+  <lib-svg-icon icon="send-message" class="svg16"></lib-svg-icon>
 </button>

@@ -17,7 +17,7 @@ import { Profile } from '@tt/interfaces/profile';
 import { GlobalStoreService } from '@tt/shared';
 
 @Component({
-  selector: 'app-post-input',
+  selector: 'lib-post-input',
   imports: [AvatarCircleComponent, SvgIconComponent, FormsModule],
   templateUrl: './post-input.component.html',
   styleUrl: './post-input.component.scss',

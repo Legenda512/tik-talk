@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 // TODO переделать компонент, не понятно почему неправильно грузилась картинка
 @Component({
-  selector: 'app-svg-icon',
+  selector: 'lib-svg-icon',
   imports: [],
   template: '',
   styles: [':host { display: contents; }'],

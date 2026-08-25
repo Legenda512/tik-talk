@@ -10,7 +10,7 @@ import { Profile } from '@tt/interfaces/profile';
 import { SvgIconComponent } from '@tt/common-ui';
 
 @Component({
-  selector: 'app-profile-page',
+  selector: 'lib-profile-page',
   imports: [
     ProfileHeaderComponent,
     SvgIconComponent,

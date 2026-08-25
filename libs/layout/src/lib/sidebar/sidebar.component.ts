@@ -10,7 +10,7 @@ import { MenuItem } from '../data';
 import { Profile } from '@tt/interfaces/profile';
 
 @Component({
-  selector: 'app-sidebar',
+  selector: 'lib-sidebar',
   imports: [
     SvgIconComponent,
     SubscriberCardComponent,

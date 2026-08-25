@@ -67,7 +67,7 @@ function validateDateRange({
 }
 
 @Component({
-  selector: 'tt-form-experimental',
+  selector: 'lib-tt-form-experimental',
   imports: [ReactiveFormsModule],
   templateUrl: './form-experimental.component.html',
   styleUrl: './form-experimental.component.scss',

@@ -1,12 +1,4 @@
-import {
-  Component,
-  forwardRef,
-  input,
-  InputSignal,
-  OnInit,
-  signal,
-  WritableSignal,
-} from '@angular/core';
+import { Component, forwardRef, input, InputSignal, signal, WritableSignal } from '@angular/core';
 import {
   ControlValueAccessor,
   FormsModule,
@@ -29,34 +21,41 @@ import {
 })
 export class TtInputComponent implements ControlValueAccessor {
   public readonly type: InputSignal<'text' | 'password'> = input.required<'text' | 'password'>();
-
   public readonly placeholder: InputSignal<string> = input.required<string>();
 
-  public onChange: any;
+  public readonly value: WritableSignal<string | null> = signal<string | null>(null);
+  public readonly disabled: WritableSignal<boolean> = signal<boolean>(false);
 
-  public onTouched: any;
+  public onChange: (value: string | null) => void = (): void => {
+    // noop
+  };
 
-  public value: string | null = null;
-
-  disabled: WritableSignal<boolean> = signal<boolean>(false);
+  public onTouched: () => void = (): void => {
+    // noop
+  };
 
   public writeValue(value: string | null): void {
-    this.value = value;
+    this.value.set(value);
   }
 
-  public registerOnChange(fn: any): void {
+  public registerOnChange(fn: (value: string | null) => void): void {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: any): void {
+  public registerOnTouched(fn: () => void): void {
     this.onTouched = fn;
   }
 
-  setDisabledState(isDisabled: boolean): void {
+  public setDisabledState(isDisabled: boolean): void {
     this.disabled.set(isDisabled);
   }
 
   protected onModelChange(value: string | null): void {
+    this.value.set(value);
     this.onChange(value);
+  }
+
+  protected onBlur(): void {
+    this.onTouched();
   }
 }

@@ -1,11 +1,11 @@
 @let messageValue = message();
 
 @if (messageValue.user) {
-  <app-avatar-circle
+  <lib-avatar-circle
     class="size32"
     [avatarUrl]="messageValue.user.avatarUrl"
     [avatarAlt]="messageValue.user.lastName"
-  ></app-avatar-circle>
+  ></lib-avatar-circle>
 
   <div class="message-container">
     <strong class="medium-text mb8 message-header"

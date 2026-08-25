@@ -1,4 +1,4 @@
-<app-profile-filters></app-profile-filters>
+<lib-profile-filters></lib-profile-filters>
 
 <div
   class="profile-card__wrapper"
@@ -9,7 +9,7 @@
   (scrolled)="onScroll()"
 >
   @for (profile of profiles(); track profile.id; let i = $index; let last = $last) {
-    <app-profile-card [profile]="profile" [priority]="i === 0"></app-profile-card>
+    <lib-profile-card [profile]="profile" [priority]="i === 0"></lib-profile-card>
 
     <!-- scroll version 2
     <div class="profile-card__wrapper" waIntersectionObserver waIntersectionThreshold="0.5">

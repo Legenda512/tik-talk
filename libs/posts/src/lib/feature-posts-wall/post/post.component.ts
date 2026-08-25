@@ -15,7 +15,7 @@ import { CommentComponent, PostInputComponent } from '../ui';
 import { AvatarCircleComponent, SvgIconComponent } from '@tt/common-ui';
 
 @Component({
-  selector: 'app-post',
+  selector: 'lib-post',
   imports: [
     AvatarCircleComponent,
     DatePipe,

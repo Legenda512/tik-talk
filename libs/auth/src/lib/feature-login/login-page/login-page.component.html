@@ -13,11 +13,6 @@
     formControlName="username"
   >Telegram username</lib-tt-input>
 
-  <!--<label class="tt-control-label mb16">
-    Telegram username
-    <input formControlName="username" class="tt-input" type="text" placeholder="Введите логин" />
-  </label>-->
-
   <label class="tt-control-label mb32">
     Пароль
 
@@ -34,7 +29,7 @@
         [class.active]="isPasswordVisible()"
         (click)="isPasswordVisible.set(!isPasswordVisible())"
       >
-        <app-svg-icon icon="eye"></app-svg-icon>
+        <lib-svg-icon icon="eye"></lib-svg-icon>
       </button>
     </div>
   </label>

@@ -4,7 +4,7 @@ import { AvatarCircleComponent } from '@tt/common-ui';
 import { LastMessageResponse } from '../../data';
 
 @Component({
-  selector: 'app-chats-btn[chats]',
+  selector: 'lib-chats-btn[chats]',
   imports: [AvatarCircleComponent, DatePipe],
   templateUrl: './chats-btn.component.html',
   styleUrl: './chats-btn.component.scss',

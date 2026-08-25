@@ -4,7 +4,7 @@ import { DatePipe } from '@angular/common';
 import { AvatarCircleComponent } from '@tt/common-ui';
 
 @Component({
-  selector: 'app-chat-workspace-message',
+  selector: 'lib-chat-workspace-message',
   imports: [AvatarCircleComponent, DatePipe],
   templateUrl: './chat-workspace-message.component.html',
   styleUrl: './chat-workspace-message.component.scss',

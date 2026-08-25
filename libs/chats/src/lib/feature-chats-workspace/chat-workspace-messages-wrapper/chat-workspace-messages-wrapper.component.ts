@@ -17,7 +17,7 @@ import { MessagesInputComponent } from '../../ui';
 import { ChatsService, Message, Chat } from '../../data';
 
 @Component({
-  selector: 'app-chat-workspace-messages-wrapper',
+  selector: 'lib-chat-workspace-messages-wrapper',
   imports: [ChatWorkspaceMessageComponent, MessagesInputComponent],
   templateUrl: './chat-workspace-messages-wrapper.component.html',
   styleUrl: './chat-workspace-messages-wrapper.component.scss',

@@ -15,7 +15,7 @@ import { Post, PostService } from '../../data';
 import { PostComponent } from '../post/post.component';
 
 @Component({
-  selector: 'app-post-feed',
+  selector: 'lib-post-feed',
   imports: [PostInputComponent, PostComponent],
   templateUrl: './post-feed.component.html',
   styleUrl: './post-feed.component.scss',

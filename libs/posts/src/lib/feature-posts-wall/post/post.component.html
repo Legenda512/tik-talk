@@ -1,11 +1,11 @@
 @let postValue = post();
 @let commentsValue = comments();
 
-<app-avatar-circle
+<lib-avatar-circle
   class="size32"
   [avatarUrl]="postValue.author.avatarUrl"
   [avatarAlt]="postValue.author.firstName"
-></app-avatar-circle>
+></lib-avatar-circle>
 
 <main class="post-body">
   <div class="post-header">
@@ -19,7 +19,7 @@
 
   <div class="post-counters">
     <span class="comment-amount">
-      <app-svg-icon icon="comments" class="svg16"></app-svg-icon>
+      <lib-svg-icon icon="comments" class="svg16"></lib-svg-icon>
       <span class="comments-length">
         {{ commentsValue.length }}
       </span>
@@ -28,13 +28,13 @@
 
   <div class="post__comments-wrapper">
     @for (comment of commentsValue; track comment.id) {
-      <app-comment [comment]="comment"></app-comment>
+      <lib-comment [comment]="comment"></lib-comment>
     }
   </div>
 
-  <app-post-input
+  <lib-post-input
     (created)="onCreated()"
     [isCommentInput]="true"
     [postId]="postValue.id"
-  ></app-post-input>
+  ></lib-post-input>
 </main>

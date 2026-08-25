@@ -5,15 +5,16 @@ import { Router } from '@angular/router';
 import { AvatarUploadComponent, ProfileHeaderComponent } from '../../ui';
 import { ProfileService, SettingsForm } from '../../data';
 import { Profile } from '@tt/interfaces/profile';
-import { StackInputComponent } from '@tt/common-ui';
+import { AddressInputComponent, StackInputComponent } from '@tt/common-ui';
 
 @Component({
-  selector: 'app-settings-page',
+  selector: 'lib-settings-page',
   imports: [
     ProfileHeaderComponent,
     ReactiveFormsModule,
     AvatarUploadComponent,
     StackInputComponent,
+    AddressInputComponent,
   ],
   templateUrl: './settings-page.component.html',
   styleUrl: './settings-page.component.scss',
@@ -30,6 +31,7 @@ export class SettingsPageComponent {
     username: new FormControl({ value: '', disabled: true }, Validators.required),
     description: new FormControl(''),
     stack: new FormControl([]),
+    city: new FormControl<string>(''),
   });
 
   protected readonly profile: Profile | null = this._profileService.myProfile();
@@ -62,6 +64,7 @@ export class SettingsPageComponent {
       lastName: formValue.lastName ?? '',
       description: formValue.description ?? '',
       stack: formValue.stack ?? [],
+      city: formValue.city ?? null,
     };
 
     const avatarRequest$: Observable<object> | Observable<null> = avatar

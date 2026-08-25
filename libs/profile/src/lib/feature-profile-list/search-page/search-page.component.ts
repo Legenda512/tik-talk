@@ -9,23 +9,11 @@ import {
 import { Profile } from '@tt/interfaces/profile';
 //NgRX store
 import { Store } from '@ngrx/store';
-import { InfiniteScrollTriggerComponent } from '@tt/common-ui';
-import {
-  WaIntersectionObservee,
-  WaIntersectionObserverDirective,
-} from '@ng-web-apis/intersection-observer';
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 
 @Component({
-  selector: 'app-search-page',
-  imports: [
-    ProfileCardComponent,
-    ProfileFilters,
-    InfiniteScrollTriggerComponent,
-    WaIntersectionObserverDirective,
-    WaIntersectionObservee,
-    InfiniteScrollDirective,
-  ],
+  selector: 'lib-search-page',
+  imports: [ProfileCardComponent, ProfileFilters, InfiniteScrollDirective],
   templateUrl: './search-page.component.html',
   styleUrl: './search-page.component.scss',
 })

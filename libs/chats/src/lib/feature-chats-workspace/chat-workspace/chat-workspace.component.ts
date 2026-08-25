@@ -7,7 +7,7 @@ import { ChatWorkspaceMessagesWrapperComponent } from '../chat-workspace-message
 import { Chat, ChatsService } from '../../data';
 
 @Component({
-  selector: 'app-chat-workspace',
+  selector: 'lib-chat-workspace',
   imports: [ChatWorkspaceHeaderComponent, ChatWorkspaceMessagesWrapperComponent],
   templateUrl: './chat-workspace.component.html',
   styleUrl: './chat-workspace.component.scss',

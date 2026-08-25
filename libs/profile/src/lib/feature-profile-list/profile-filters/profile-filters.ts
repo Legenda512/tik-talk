@@ -11,7 +11,7 @@ import {
 import { Store } from '@ngrx/store';
 
 @Component({
-  selector: 'app-profile-filters',
+  selector: 'lib-profile-filters',
   imports: [FormsModule, ReactiveFormsModule],
   templateUrl: './profile-filters.html',
   styleUrl: './profile-filters.scss',
