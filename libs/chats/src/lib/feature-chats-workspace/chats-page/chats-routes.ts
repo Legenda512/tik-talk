@@ -9,7 +9,10 @@ export const chatsRoutes: Route[] = [
     children: [
       {
         path: ':id',
-        component: ChatWorkspaceComponent,
+        loadComponent: () =>
+          import('../chat-workspace/chat-workspace.component').then(
+            (c): typeof ChatWorkspaceComponent => c.ChatWorkspaceComponent,
+          ),
       },
     ],
   },

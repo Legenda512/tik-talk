@@ -1,4 +1,4 @@
-import { Route, Routes } from '@angular/router';
+import { PartialMatchRouteSnapshot, Router, Routes, UrlSegment, UrlTree } from '@angular/router';
 import { canActivateAuth, LoginPageComponent } from '@tt/auth';
 import {
   ProfileEffects,
@@ -8,20 +8,45 @@ import {
   SearchPageComponent,
   SettingsPageComponent,
 } from '@tt/profile';
-import { chatsRoutes } from '@tt/chats';
 import { LayoutComponent } from '@tt/layout';
 
 // store NgRX
 import { provideEffects } from '@ngrx/effects';
 import { provideState } from '@ngrx/store';
-import { FormExperimentalComponent } from '@tt/experimental';
+import { ExperimentalComponent, FormExperimentalComponent } from '@tt/experimental';
+import { ErrorPageComponent } from './error.component';
+import { inject } from '@angular/core';
 
 export const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
     children: [
-      { path: '', redirectTo: 'profile/me', pathMatch: 'full' },
+      {
+        path: '',
+        redirectTo: (route: PartialMatchRouteSnapshot): UrlTree => {
+          const router: Router = inject(Router);
+          return router.createUrlTree(['profile/me']);
+        },
+        pathMatch: 'full',
+      },
+      {
+        component: ErrorPageComponent,
+        matcher: (segments: UrlSegment[]) => {
+          if (segments.length === 2 && segments[0].path === 'profile') {
+            const id: string = segments[1].path;
+            if (id.startsWith('1')) {
+              return {
+                consumed: segments,
+                posParams: {
+                  id: segments[1],
+                },
+              };
+            }
+          }
+          return null;
+        },
+      },
       { path: 'profile/:id', component: ProfilePageComponent },
       { path: 'settings', component: SettingsPageComponent },
       {
@@ -38,10 +63,16 @@ export const routes: Routes = [
           provideEffects(ProfileEffects),
         ],
       },
-      { path: 'chats', loadChildren: (): Route[] => chatsRoutes },
+      {
+        path: 'chats',
+        loadChildren: () => import('@tt/chats').then((m) => m.chatsRoutes),
+        data: { preload: true },
+      },
     ],
     canActivate: [canActivateAuth],
   },
   { path: 'login', component: LoginPageComponent },
   { path: 'experimental', component: FormExperimentalComponent },
+  { path: 'experimental2', component: ExperimentalComponent },
+  { path: `**`, component: ErrorPageComponent },
 ];

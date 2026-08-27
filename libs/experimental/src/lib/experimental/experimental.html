@@ -1,1 +1,5 @@
-<p>Experimental works!</p>
+<button class="btn" (click)="loadComponent()">Загрузить</button>
+
+@if (lazeComponent(); as lazeComponent) {
+  <ng-container [ngComponentOutlet]="lazeComponent"></ng-container>
+}
