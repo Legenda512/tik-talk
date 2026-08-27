@@ -47,7 +47,16 @@ export const routes: Routes = [
           return null;
         },
       },
-      { path: 'profile/:id', component: ProfilePageComponent },
+      {
+        path: 'profile/:id',
+        component: ProfilePageComponent,
+        children: [
+          {
+            path: 'err',
+            component: ErrorPageComponent,
+          },
+        ],
+      },
       { path: 'settings', component: SettingsPageComponent },
       {
         path: 'search',

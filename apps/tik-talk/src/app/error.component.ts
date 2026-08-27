@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, effect, input, InputSignal } from '@angular/core';
 
 @Component({
   selector: 'app-error',
@@ -18,4 +18,12 @@ import { Component } from '@angular/core';
     `,
   ],
 })
-export class ErrorPageComponent {}
+export class ErrorPageComponent {
+  public id: InputSignal<string | undefined> = input<string>();
+
+  constructor() {
+    effect((): void => {
+      console.log(this.id());
+    });
+  }
+}

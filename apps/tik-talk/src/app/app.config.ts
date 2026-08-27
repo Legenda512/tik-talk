@@ -4,7 +4,19 @@ import {
   provideZoneChangeDetection,
   Service,
 } from '@angular/core';
-import { PreloadingStrategy, provideRouter, Route, withPreloading } from '@angular/router';
+import {
+  PreloadingStrategy,
+  provideRouter,
+  Route,
+  withComponentInputBinding,
+  withDebugTracing,
+  withEnabledBlockingInitialNavigation,
+  withHashLocation,
+  withInMemoryScrolling,
+  withPreloading,
+  withRouterConfig,
+  withViewTransitions,
+} from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
@@ -43,7 +55,20 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(withEventReplay()),
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes, withPreloading(DelayedPreloadingStrategy)),
+    provideRouter(
+      routes,
+      // withPreloading(DelayedPreloadingStrategy) // меняем стратегию предзагрузки
+      // withDebugTracing(), // для включения дебага
+      // withEnabledBlockingInitialNavigation(), // для SEO - блокируем до начальной навигации
+      // withInMemoryScrolling({ anchorScrolling: 'enabled', scrollPositionRestoration: 'enabled' }), // при возврате между роутерами, будет запоминаться позиция скролла на странице
+      // withComponentInputBinding(), // забандить на инпуты компонета, пример на странице profile, где происходит байдинг на поле id
+      // withHashLocation(), // работает только в своей отведенной "песочнице" http://localhost:4200/#/profile/me
+      // withRouterConfig({
+      //   paramsInheritanceStrategy: 'always', // включаем наследование параметров роута
+      //   onSameUrlNavigation: 'reload', // что делать если попались одинаковые URL
+      // }),
+      //withViewTransitions(), // добавляет плавности в переключение между роутами
+    ),
     provideHttpClient(withInterceptors([authTokenInterceptor])),
     {
       provide: IMAGE_LOADER,

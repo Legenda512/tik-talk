@@ -1,5 +1,5 @@
-import { Component, computed, inject, Signal } from '@angular/core';
-import { ActivatedRoute, Params, Router, RouterLink } from '@angular/router';
+import { Component, computed, effect, inject, input, InputSignal, Signal } from '@angular/core';
+import { ActivatedRoute, Params, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { NgOptimizedImage } from '@angular/common';
@@ -17,6 +17,7 @@ import { SvgIconComponent } from '@tt/common-ui';
     RouterLink,
     NgOptimizedImage,
     PostFeedComponent,
+    RouterOutlet,
   ],
   templateUrl: './profile-page.component.html',
   styleUrl: './profile-page.component.scss',
@@ -33,6 +34,14 @@ export class ProfilePageComponent {
   private readonly _myProfile$: Observable<Profile | null> = toObservable(
     this._profileService.myProfile,
   );
+
+  public id: InputSignal<string | undefined> = input<string>();
+
+  constructor() {
+    effect(() => {
+      console.log(this.id());
+    });
+  }
 
   protected readonly subscribers: Signal<Profile[]> = toSignal(
     this._profileService.getSubscribersShortList(5),

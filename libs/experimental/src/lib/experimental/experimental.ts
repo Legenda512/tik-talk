@@ -1,10 +1,11 @@
 import { Component, signal, WritableSignal } from '@angular/core';
 import { NgComponentOutlet } from '@angular/common';
 import { RandomNumComponent } from './random-num/random-num.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'lib-experimental',
-  imports: [NgComponentOutlet],
+  imports: [NgComponentOutlet, RouterLink],
   templateUrl: './experimental.html',
   styleUrl: './experimental.css',
 })
