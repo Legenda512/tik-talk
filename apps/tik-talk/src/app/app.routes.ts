@@ -1,5 +1,5 @@
 import { PartialMatchRouteSnapshot, Router, Routes, UrlSegment, UrlTree } from '@angular/router';
-import { canActivateAuth, LoginPageComponent } from '@tt/auth';
+import { canActivateAuth, canMatch, LoginPageComponent } from '@tt/auth';
 import {
   ProfileEffects,
   profileFeature,
@@ -74,6 +74,7 @@ export const routes: Routes = [
       },
       {
         path: 'chats',
+        canMatch: [canMatch],
         loadChildren: () => import('@tt/chats').then((m) => m.chatsRoutes),
         data: { preload: true },
       },
