@@ -16,6 +16,8 @@ import { provideState } from '@ngrx/store';
 import { ExperimentalComponent, FormExperimentalComponent } from '@tt/experimental';
 import { ErrorPageComponent } from './error.component';
 import { inject } from '@angular/core';
+import { Aside1 } from './aside1/aside1';
+import { Aside2 } from './aside2/aside2';
 
 export const routes: Routes = [
   {
@@ -77,6 +79,27 @@ export const routes: Routes = [
         canMatch: [canMatch],
         loadChildren: () => import('@tt/chats').then((m) => m.chatsRoutes),
         data: { preload: true },
+      },
+      {
+        path: 'first',
+        outlet: 'aside',
+        component: Aside1,
+      },
+      {
+        path: 'second',
+        outlet: 'aside',
+        component: Aside2,
+      },
+
+      {
+        path: 'first',
+        outlet: 'pew',
+        component: Aside1,
+      },
+      {
+        path: 'second',
+        outlet: 'pew',
+        component: Aside2,
       },
     ],
     canActivate: [canActivateAuth],

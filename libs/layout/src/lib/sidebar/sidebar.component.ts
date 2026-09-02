@@ -1,6 +1,6 @@
 import { Component, inject, OnInit, Signal, WritableSignal } from '@angular/core';
 import { SubscriberCardComponent } from '../subscriber-card/subscriber-card.component';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { take } from 'rxjs';
 import { NgOptimizedImage } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -17,6 +17,7 @@ import { Profile } from '@tt/interfaces/profile';
     RouterLink,
     NgOptimizedImage,
     RouterLinkActive,
+    RouterOutlet,
   ],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss',

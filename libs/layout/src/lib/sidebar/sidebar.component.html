@@ -35,6 +35,25 @@
   <lib-svg-icon icon="arrow" class="to-subscribers-icon"></lib-svg-icon>
 </div>
 
+<a
+  [routerLink]="[{ outlets: { aside: ['first'], pew: ['first'] } }]"
+  style="color: white; margin: 20px"
+  >First</a
+>
+<a
+  [routerLink]="[{ outlets: { aside: ['second'], pew: ['second'] } }]"
+  style="color: white; margin: 20px"
+  >Second</a
+>
+<a
+  [routerLink]="[{ outlets: { primary: ['experimental2'], aside: null, pew: null } }]"
+  style="color: white; margin: 20px"
+  >Эксперименты</a
+>
+
+<router-outlet name="aside"></router-outlet>
+<router-outlet name="pew"></router-outlet>
+
 <footer class="sidebar__footer">
   @if (myProfile(); as myProfile) {
     <div class="my-profile-icon-frame">
