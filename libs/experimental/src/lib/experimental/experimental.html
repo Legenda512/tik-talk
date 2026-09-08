@@ -1,13 +1,2 @@
-<!--<button class="btn" (click)="loadComponent()">Загрузить</button>-->
-
-<!--@if (lazeComponent(); as lazeComponent) {-->
-<!--  <ng-container [ngComponentOutlet]="lazeComponent"></ng-container>-->
-<!--}-->
-
-<a routerLink="." fragment="blue" class="btn"> to blue</a>
-
-<div class="tomato"></div>
-
-<a routerLink="/profile/me" class="btn"> to profile</a>
-
-<div class="blue" id="blue"></div>
+<button class="btn mb32" (click)="addSub()">Добавить подписку</button>
+<button class="btn" [routerLink]="['/']">На главную</button>
