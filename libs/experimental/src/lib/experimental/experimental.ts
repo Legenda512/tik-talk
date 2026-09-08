@@ -1,8 +1,15 @@
 import { afterNextRender, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { map, scan, takeUntil, timer } from 'rxjs';
+import {
+  map,
+  MonoTypeOperatorFunction,
+  Observable,
+  OperatorFunction,
+  scan,
+  takeUntil,
+  timer,
+} from 'rxjs';
 import { DestroyService } from './destroy.service';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 function factorialize(num: number): number {
   if (!Number.isInteger(num) || num < 0) {
@@ -16,6 +23,30 @@ function factorialize(num: number): number {
   }
 
   return result;
+}
+
+function customMap<T, K>(callback: (value: T) => K): OperatorFunction<T, K> {
+  return (source) => {
+    return new Observable((observer) => {
+      return source.subscribe({
+        next: (val) => observer.next(callback(val)),
+        error: (err) => observer.error(err),
+        complete: () => observer.complete(),
+      });
+    });
+  };
+}
+
+function squaring(): MonoTypeOperatorFunction<number> {
+  return (source) => {
+    return new Observable((observer) => {
+      return source.subscribe({
+        next: (val) => observer.next(val * val),
+        error: (err) => observer.error(err),
+        complete: () => observer.complete(),
+      });
+    });
+  };
 }
 
 @Component({
@@ -33,18 +64,14 @@ export class ExperimentalComponent {
   destroy$ = inject(DestroyService);
 
   constructor() {
-    timer(0, 100)
+    timer(0, 1000)
       .pipe(
-        map((val) => {
-          return factorialize(val * 10);
-        }),
-        scan((acc, curr: number) => {
-          return acc + curr;
-        }, 0),
-        takeUntilDestroyed(),
+        customMap((val) => val * val),
+        // squaring(),
+        takeUntil(this.destroy$),
       )
       .subscribe((val) => {
-        console.log(123123);
+        console.log(val);
       });
   }
 
